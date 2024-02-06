@@ -1,0 +1,92 @@
+{% extends "Navbar.html" %}
+
+{%block title%}Ongoing Matches{% endblock %}
+  
+{% block navbar %}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      {% comment %} <li class="nav-item">
+        <a class="nav-link" href="/single">Single Player</a>
+	    </li> {% endcomment %}
+      <li class="nav-item">
+        <a class="nav-link active">Ongoing Matches</a>
+		  </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/completed">Completed Matches</a>
+		  </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+      	<a class="nav-link active"><b>Hello, {{ user.username }}</b></a>
+      </li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+  <div class="container mt-4">
+    <h2>Your created public rooms</h2> <br>
+    <div class="container" class="container align-items-stretch" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline;">
+      {% for room in public %}
+        <div class="card border-primary m-1" style="width: 250px">
+          <div class="card-header text-center">
+            <h4 class="my-0 font-weight-normal">Owner: <b>{{room.owner.username}}</b></h4>
+          </div>
+          <div class="card-body">
+            <h6 class="card-text">You play as <b><i>{{room.owner_side | title}}</b></i></h6>
+            <h6 class="card-text" style="color:red"><b>{{room.opponent.username}}</b> have joined your public room. Now reay to play</h6>
+            <a type="button" class="btn btn-lg btn-block btn-primary" href="{{room.link}}" style="border-radius:20px;background-color: #4169E1">Join match</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>You have not created any public games! </p> <a class="btn btn-secondary mx-2" href="/create" role="button" style="border-radius:20px;background-color: #4169E1;padding:5px 30px 5px 30px">Create </a>
+      {% endfor %}
+    </div> 
+  </div>
+  <br>
+  <br>
+
+  <div class="container">
+    <h2>Join a public room</h2> <br>
+    <div class="container" class="container align-items-stretch" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline;">
+      {% for room in public1 %}
+        <div class="card border-primary m-1" style="width: 250px">
+          <div class="card-header text-center">
+            <h4 class="my-0 font-weight-normal">Owner: <b>{{room.owner}}</b></h4>
+          </div>
+          <div class="card-body">
+            {% comment %} <h6 class="card-text">Username: {{room.owner.username}}</h6> {% endcomment %}
+            <h6 class="card-text">You'll play as <b><i>{{room.side}}</b></i></h6>
+            <a type="button" class="btn btn-lg btn-block btn-primary" href="{{room.link}}" style="border-radius:20px;background-color: #4169E1">Join match</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>There ae no ongoin public rooms available right now! </p> <a class="btn btn-secondary mx-2" href="/create" role="button" style="border-radius:20px;background-color: #4169E1;padding:5px 30px 5px 30px">Create</a>
+      {% endfor %}
+    </div> 
+    <br>
+  </div>
+
+
+  <div class="container mt-4">
+    <h2>Your personal room</h2> <br>
+    <div class="container" class="container align-items-stretch" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline;">
+      {% for room in ongoing %}
+        <div class="card border-primary m-1" style="width: 250px">
+          <div class="card-body">
+            <h6 class="card-text">Against: <b>{{room.opponent.username}}</b></h6>
+            <h6 class="card-text">You're playing as <b><i>{{room.side | title}}</b></i></h6>
+            <a type="button" class="btn btn-lg btn-block btn-primary" href="{{ room.link }}" style="border-radius:20px;background-color: #4169E1">Continue</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>You do not have any ongoing personal room! </p> <a class="btn btn-secondary mx-2" href="/create" role="button" style="border-radius:20px;background-color: #4169E1;padding:5px 30px 5px 30px">Create</a>
+      {% endfor %}
+    </div> 
+  </div>
+
+{% endblock %}

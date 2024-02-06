@@ -1,0 +1,89 @@
+{% extends "Navbar.html" %}
+
+{%block title%}Home{% endblock %}
+  
+{% block navbar %}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home </a>
+      </li>
+      {% comment %} <li class="nav-item">
+        <a class="nav-link" href="/single">Single Player</a>
+		  </li> {% endcomment %}
+      <li class="nav-item">
+        <a class="nav-link" href="/ongoing">Ongoing matches</a>
+		  </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/completed">Completed matches</a>
+		  </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/logout">Logout</a>
+      </li>
+      <li class="nav-item">
+      	<a class="nav-link active"><b>Hello, {{ user.username }}</b></a>
+      </li>
+	</ul>
+{% endblock %}
+
+{% block body %}
+  </br>
+  {% comment %} <div class="jumbotron"> {% endcomment %}
+    <div class="container">
+      <center>
+      <h4 class="display-4">SamChess</h4> 
+      </center>
+      {% comment %} <p>Welcome to Chess Gang! Play real-time multiplayer chess with your friends or just practice on Single Player Mode</p> {% endcomment %}
+      {% comment %} <p><a class="btn btn-primary btn-lg" href="/create" role="button">Create a Game</a></p> {% endcomment %}
+    </div>
+  </br>
+  </br>
+  </br>
+  </br>
+  {% comment %} </div> {% endcomment %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Create a match</h2>
+        <p>Create a custom match with your desired side and opponent or create a public room</p>
+        <p><a class="btn btn-secondary" href="/create" role="button" style="background-color: #4169E1;padding: 10px 80px;border-radius:20px">Create</a></p>
+      </div> 
+      <div class="col-md-4">
+        <h2>Join ongoing matches</h2>
+        <p>Join free matches</p>
+        <p><a class="btn btn-secondary" href="/ongoing" role="button" style="background-color: #4169E1;padding: 10px 80px;border-radius:20px">View</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>View completed matcs</h2>
+        <p>View matches that you've completed</p>
+        <p><a class="btn btn-secondary" href="/completed" role="button" style="background-color: #4169E1;padding: 10px 80px 10px 80px;border-radius:20px">View</a></p>
+      </div>
+    </div> 
+    <hr>
+  </div>
+
+{% comment %} <div class="container">
+    <h2>Join a Public Game</h2> <br>
+    <div class="container" class="container align-items-stretch" style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: baseline;">
+      {% for room in public %}
+        <div class="card border-primary m-1" style="width: 250px">
+          <div class="card-header text-center">
+            <h4 class="my-0 font-weight-normal">{{room.level}}</h4>
+          </div>
+          <div class="card-body">
+            <h6 class="card-text">Username: {{room.owner.username}}</h6>
+            <h6 class="card-text">Play as {{room.side}}</h6>
+            <a type="button" class="btn btn-lg btn-block btn-primary" href="{{room.link}}">Join Game</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>There seems to be no public games right now. </p> <a class="btn btn-secondary mx-2" href="/create" role="button">Create &raquo;</a>
+      {% endfor %}
+    </div> 
+    <br> {% endcomment %}
+  </div>
+  
+
+{% endblock %}
