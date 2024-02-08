@@ -9,7 +9,7 @@ from ChessApp.consumers import GameConsumer, SingleConsumer
 application = ProtocolTypeRouter({
     "websocket": AuthMiddlewareStack(
         URLRouter([
-            path(r'game/<int:game_id>', GameConsumer.as_asgi()),
+            path(r'ws/game/<int:game_id>', GameConsumer.as_asgi()),
             path(r'single/', SingleConsumer.as_asgi())
         ]),
     ),
