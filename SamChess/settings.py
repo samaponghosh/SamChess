@@ -61,8 +61,7 @@ TEMPLATES = [
 ]
 
 #redis 
-# redis_host = os.environ.get("REDIS_HOST")
-redis_host = "rediss://red-cn22uov109ks7393761g:p3O2eirDs3jPDh1Bl9NxO43ck6H9XyGO@singapore-redis.render.com:6379"
+redis_host = os.environ.get("REDIS_HOST")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
