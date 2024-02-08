@@ -78,7 +78,7 @@
   <body class="text-center">
     <form class="form-signin" method="post" action="{% url 'login' %}">
       {% csrf_token %}
-      <img class="mb-1" alt="" width="100" height="100" src="/static/chess.png">
+      {% comment %} <img class="mb-1" alt="" width="100" height="100" src="/static/chess.png"> {% endcomment %}
       <h1 class="h3 mb-3 font-weight-normal">SamChess</h1>
       {% if form.errors %}
         {% for field in form %}
