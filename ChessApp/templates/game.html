@@ -78,7 +78,8 @@
   </div>
 
   <script>
-  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+  {% comment %} var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws"; {% endcomment %}
+  var ws_scheme = "wss";
   var ws_path = ws_scheme + '://' + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
   var socket = new ReconnectingWebSocket(ws_path);
