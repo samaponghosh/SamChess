@@ -61,13 +61,13 @@ TEMPLATES = [
 ]
 
 #redis 
-REDIS_URL = os.environ.get("REDIS_URL")
+# REDIS_URL = os.environ.get("REDIS_URL")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             # "hosts": [os.environ.get('REDIS_URL', 'redis://red-cn1j10ed3nmc73bnnqmg:6379')],
-            "hosts": [(REDIS_URL)],
+            "hosts": [("redis://red-cn24l58l5elc73e9i1a0:6379")],
         },
     },
 }
