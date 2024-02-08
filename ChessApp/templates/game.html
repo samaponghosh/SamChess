@@ -79,9 +79,9 @@
 
   <script>
   var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-  var ws_path = ws_scheme + '://' + window.location.host + "/game/" + {{game_id}};
+  const ws_path = ws_scheme + '://' + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
-  var socket = new ReconnectingWebSocket(ws_path);
+  const socket = new ReconnectingWebSocket(ws_path);
   var board = null
   var game = new Chess()
   var $status = $('#status')
@@ -210,10 +210,10 @@
   socket.onclose = function () {
     $modalTitle.html("Connection closed")
     $modalBody.html("Connection closed unexpectedly please wait while we try to reconnect...")
-    $('#gameModal').modal({
-      keyboard: false,
-      backdrop: 'static'
-    });
+    //$('#gameModal').modal({
+     // keyboard: false,
+     // backdrop: 'static'
+    //});
   }
 
   socket.onopen = function () {
