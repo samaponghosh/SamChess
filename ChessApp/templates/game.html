@@ -8,6 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js" integrity="sha512-B4skI5FiLurS86aioJx9VfozI1wjqrn6aTdJH+YQUmCZum/ZibPBTX55k5d9XM6EsKePDInkLVrN7vPmJxc1qA==" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js" integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js" integrity="sha384-s3XgLpvmHyscVpijnseAmye819Ee3yaGa8NxstkJVyA6nuDFjt59u1QvuEl/mecz" crossorigin="anonymous"></script>
+  <script defer src="{% static '/js/socket_logic.js' %}"></script>
 {% endblock %}
 
 {% block navbar %}
@@ -77,8 +78,8 @@
     <b>PGN:</b><p id="pgn"></p> {% endcomment %}
   </div>
 
-  <script>
-  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+
+  {% comment %} var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
   const ws_path = ws_scheme + '://' + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
   const socket = new ReconnectingWebSocket(ws_path);
@@ -210,10 +211,10 @@
   socket.onclose = function () {
     $modalTitle.html("Connection closed")
     $modalBody.html("Connection closed unexpectedly please wait while we try to reconnect...")
-    //$('#gameModal').modal({
-     // keyboard: false,
-     // backdrop: 'static'
-    //});
+    $('#gameModal').modal({
+     keyboard: false,
+     backdrop: 'static'
+    });
   }
 
   socket.onopen = function () {
@@ -307,7 +308,7 @@
       keyboard: false,
       backdrop: 'static'
     });
-  })
+  }) {% endcomment %}
 
-  </script>
+
 {% endblock %}
