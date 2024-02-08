@@ -39,7 +39,7 @@ def game(request, game_id):
             game.save()
             messages.add_message(request, messages.SUCCESS, "You have joined this game successfully")
         elif game.opponent != request.user:
-            messages.add_message(request, messages.ERROR, "This match already has enough participants. Try joining another")
+            messages.add_message(request, messages.ERROR, "This room already has enough participants. Try joining another")
             return HttpResponseRedirect(reverse("ongoing"))
     return render(request, "game.html", {"game_id":game_id})
 
@@ -74,7 +74,7 @@ class createGame(LoginRequiredMixin, View):
             # l = Game(owner=request.user, owner_side=side, level=level)
             l = gametable(owner=request.user, owner_side=side)
             l.save()
-            messages.add_message(request, messages.SUCCESS, "Match created. Check Ongoing match to see status")
+            messages.add_message(request, messages.SUCCESS, "Room created. Check Ongoing match to see status. Room will be updated when someone will join in that room")
             return HttpResponseRedirect(reverse("lobby"))
 
 class register(View):

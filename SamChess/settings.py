@@ -9,10 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = "1a8b5d8922cd4ca4bf3ac4c5887bd3fe"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower() == "true"
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -60,14 +60,23 @@ TEMPLATES = [
     },
 ]
 
-#redis 
-REDIS_URL = os.environ.get("REDIS_URL")
+# #redis 
+# REDIS_URL = os.environ.get("REDIS_URL", "locaalhost")
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             # "hosts": [os.environ.get('REDIS_URL', 'redis://red-cn1j10ed3nmc73bnnqmg:6379')],
+#             "hosts": [(REDIS_URL, 6379)],
+#         },
+#     },
+# }
+REDIS_URL = os.environ.get('REDIS_HOST', 'localhost')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            # "hosts": [os.environ.get('REDIS_URL', 'redis://red-cn1j10ed3nmc73bnnqmg:6379')],
-            "hosts": [(REDIS_URL)],
+            "hosts": [(REDIS_URL, 6379)],
         },
     },
 }

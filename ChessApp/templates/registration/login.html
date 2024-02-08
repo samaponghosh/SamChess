@@ -104,14 +104,16 @@
           </div>
         {% endfor %}
       {% endif %}
-      <label for="id_username" >Username</label>
-      <input type="text" name="username" id="id_username" class="form-control" placeholder="Username">
       <br>
-      <label for="id_password">Password</label>
-      <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+      <label for="id_username" ><b>Username:-</b></label>
+      <input type="text" name="username" id="id_username" class="form-control" placeholder="Username" style="background-color: #cde2fc;border-radius:15px" required>
       <br>
-      <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Sign in</button>
-      <h6 class="font-weight-normal"><a href="/signup">Create new account now!</a></h6>
+      <label for="id_password"><b>Password:-</b></label>
+      <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" style="background-color: #b4d4fa; border-radius:15px" required>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block mb-1" type="submit" style="background-color: #4169E1; border-radius:20px">Log in</button>
+      <br>
+      <h5 class="font-weight-normal"><a href="/signup">Create new account now!</a></h5>
     </form>
   </body>
 </html>

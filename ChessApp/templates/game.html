@@ -73,15 +73,15 @@
   <div style="text-align: center">
     <button class="btn btn-danger" id="resign">Resign</button> <br>
     <b>Status:</b><p id="status">Please wait for connection...</p>
-    <b>FEN:</b><p id="fen"></p>
-    <b>PGN:</b><p id="pgn"></p>
+    {% comment %} <b>FEN:</b><p id="fen"></p>
+    <b>PGN:</b><p id="pgn"></p> {% endcomment %}
   </div>
 
   <script>
   var ws_scheme = window.location.protocol == "https:" ? "wss:" : "ws:";
   var ws_path = ws_scheme + '//' + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
-  const socket = new WebSocket(ws_path, "https" );
+  const socket = new WebSocket(ws_path);
   var board = null
   var game = new Chess()
   var $status = $('#status')
