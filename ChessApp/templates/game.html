@@ -73,13 +73,12 @@
   <div style="text-align: center">
     <button class="btn btn-danger" id="resign">Resign</button> <br>
     <b>Status:</b><p id="status">Please wait for connection...</p>
-    {% comment %} <b>FEN:</b><p id="fen"></p>
-    <b>PGN:</b><p id="pgn"></p> {% endcomment %}
+    <b>FEN:</b><p id="fen"></p>
+    <b>PGN:</b><p id="pgn"></p>
   </div>
 
-  <script src="SamChess/ChessApp/static/chessboard/js/socket_logic.js"></script>
-
-  {% comment %} var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+  <script>
+  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
   const ws_path = ws_scheme + '://' + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
   const socket = new ReconnectingWebSocket(ws_path);
@@ -308,7 +307,7 @@
       keyboard: false,
       backdrop: 'static'
     });
-  }) {% endcomment %}
+  })
 
-
+  </script>
 {% endblock %}
