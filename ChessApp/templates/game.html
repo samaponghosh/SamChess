@@ -79,7 +79,7 @@
 
   <script>
   var ws_scheme = window.location.protocol == "https:" ? "wss:" : "ws:";
-  var ws_path = ws_scheme + "//"" + window.location.host + "/game/" + {{game_id}};
+  var ws_path = ws_scheme + "//" + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
   const socket = new WebSocket(ws_path);
   var board = null
