@@ -1,7 +1,7 @@
   # A Redis instance
   - type: redis
     name: REDIS_URL
-    ipAllowList: # required
+    ipAllowList: [] # required
       - source: 0.0.0.0/0
         description: everywhere
     plan: free # optional (defaults to starter instance type)
