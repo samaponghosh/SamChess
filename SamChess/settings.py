@@ -73,7 +73,7 @@ TEMPLATES = [
 #         },
 #     },
 # }
-REDIS_URL = "redis://red-cn2t517109ks73ekucpg:6379"
+REDIS_URL = "rediss://red-cn2t517109ks73ekucpg:MS11VW8yWc437JLrFZrk5D2dGEYLsmve@singapore-redis.render.com:6379"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -106,18 +106,18 @@ ASGI_APPLICATION = 'SamChess.routing.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-import dj_database_url
-
 DATABASES = {
-    "default": dj_database_url.parse("postgres://databases_76f0_user:XXv2Jb1a1tKtUr1P2k1t3A6pmv3U1rqf@dpg-cn32rricn0vc738knrq0-a/databases_76f0")
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# import dj_database_url
+
+# DATABASES = {
+#     "default": dj_database_url.parse("postgres://databases_76f0_user:XXv2Jb1a1tKtUr1P2k1t3A6pmv3U1rqf@dpg-cn32rricn0vc738knrq0-a/databases_76f0")
+# }
 
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=600)
