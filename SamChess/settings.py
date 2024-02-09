@@ -10,10 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = "1a8b5d8922cd4ca4bf3ac4c5887bd3fe"
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","True")
+# DEBUG = os.environ.get("DEBUG","True")
 # DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -73,7 +73,7 @@ TEMPLATES = [
 #         },
 #     },
 # }
-REDIS_URL = os.environ.get('REDIS_URL')
+REDIS_URL = "redis://red-cn2t517109ks73ekucpg:6379"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
@@ -116,7 +116,7 @@ ASGI_APPLICATION = 'SamChess.routing.application'
 import dj_database_url
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": dj_database_url.parse("postgres://databases_76f0_user:XXv2Jb1a1tKtUr1P2k1t3A6pmv3U1rqf@dpg-cn32rricn0vc738knrq0-a/databases_76f0")
 }
 
 # import dj_database_url
