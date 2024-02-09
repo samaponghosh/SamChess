@@ -84,14 +84,13 @@ class register(View):
         first_name=request.POST["fname"]
         last_name=request.POST["lname"]
         username=request.POST["username"]
-        email=request.POST["email"]
         password=request.POST["password"]
         passwordconf=request.POST["passwordconf"]
         if password != passwordconf:
             messages.add_message(request, messages.ERROR, "Passwords do not match")
             return HttpResponseRedirect(reverse("signup"))
         try:
-            User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
+            User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
         except:
             messages.add_message(request, messages.ERROR, "This username already exists!")
             return HttpResponseRedirect(reverse("signup"))
