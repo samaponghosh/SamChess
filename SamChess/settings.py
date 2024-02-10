@@ -73,7 +73,7 @@ TEMPLATES = [
 #         },
 #     },
 # }
-REDIS_URL = os.environ.get('REDIS_URL','localhost')
+REDIS_URL = os.environ.get('REDIS_URL', 'localhost')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
