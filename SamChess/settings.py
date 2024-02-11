@@ -14,7 +14,7 @@ SECRET_KEY = "1a8b5d8922cd4ca4bf3ac4c5887bd3fe"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG","True")
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -22,14 +22,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'ChessApp',
+    'channels',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ChessApp',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +102,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'SamChess.wsgi.application'
 
-ASGI_APPLICATION = 'SamChess.routing.application'
+ASGI_APPLICATION = 'SamChess.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
