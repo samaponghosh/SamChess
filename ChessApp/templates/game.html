@@ -81,7 +81,7 @@
   var ws_scheme = window.location.protocol == "https:" ? "wss:" : "ws:";
   var ws_path = ws_scheme + "//" + window.location.host + "/game/" + {{game_id}};
   console.log("Connecting to " + ws_path);
-  const socket = new WebSocket(ws_path);
+  const connekson = new WebSocket(ws_path);
   var board = null
   var game = new Chess()
   var $status = $('#status')
@@ -123,7 +123,7 @@
     })
     if (move === null) return 'snapback'
     updateStatus()
-    socket.send(JSON.stringify({"command": "new-move","source": source,"target": target,"fen": game.fen(), "pgn": game.pgn()}));
+    connekson.send(JSON.stringify({"command": "new-move","source": source,"target": target,"fen": game.fen(), "pgn": game.pgn()}));
   }
 
   function onSnapEnd () {
@@ -163,9 +163,9 @@
     if (game.in_checkmate()) {
       status = 'Game over, ' + moveColor + ' is in checkmate.'
       if(moveColor === 'White')
-        socket.send(JSON.stringify({"command": "game-over","result": "Black wins"}));
+        connekson.send(JSON.stringify({"command": "game-over","result": "Black wins"}));
       else
-        socket.send(JSON.stringify({"command": "game-over","result": "White wins"}));
+        connekson.send(JSON.stringify({"command": "game-over","result": "White wins"}));
       $modalTitle.html("Game Over")
       $modalBody.html(status)
       $('#gameModal').modal({
@@ -175,7 +175,7 @@
     }
     else if (game.in_draw()) {
       status = 'Game over, drawn position'
-      socket.send(JSON.stringify({"command": "game-over","result": "Game ended in drawn position"}));
+      connekson.send(JSON.stringify({"command": "game-over","result": "Game ended in drawn position"}));
       $modalTitle.html("Game Over")
       $modalBody.html(status)
       $('#gameModal').modal({
@@ -185,7 +185,7 @@
     }
     else if (game.in_stalemate()) {
       status = 'Game over, stalemate'
-      socket.send(JSON.stringify({"command": "game-over","result": "Game ended in stalemate"}));
+      connekson.send(JSON.stringify({"command": "game-over","result": "Game ended in stalemate"}));
       $modalTitle.html("Game Over")
       $modalBody.html(status)
       $('#gameModal').modal({
@@ -207,7 +207,7 @@
 
   updateStatus()
 
-  socket.onclose = function () {
+  connekson.onclose = function () {
     $modalTitle.html("Connection closed")
     $modalBody.html("Connection closed unexpectedly please wait while we try to reconnect...")
     $('#gameModal').modal({
@@ -216,12 +216,12 @@
     });
   }
 
-  socket.onopen = function () {
+  connekson.onopen = function () {
     $('#gameModal').modal('hide');
     $('#gameModal').data('bs.modal',null);
   }
 
-  socket.onmessage = function (message) {
+  connekson.onmessage = function (message) {
     console.log("Got websocket message " + message.data);
     var data = JSON.parse(message.data);
     if (data.command=="join") {
@@ -296,9 +296,9 @@
   })
   $(document).on('click','#yesRes', function(){
     if(orientation === 'white')
-      socket.send(JSON.stringify({"command": "resign","result": "Black wins"}));
+      connekson.send(JSON.stringify({"command": "resign","result": "Black wins"}));
     else
-      socket.send(JSON.stringify({"command": "resign","result": "White wins"}));
+      connekson.send(JSON.stringify({"command": "resign","result": "White wins"}));
     $('#resignModal').modal('hide');
     $('#resignModal').data('bs.modal',null);
     $modalTitle.html("Game over")
