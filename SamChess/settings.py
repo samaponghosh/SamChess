@@ -108,20 +108,20 @@ ASGI_APPLICATION = 'SamChess.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # DATABASES = {
 #     'default': dj_database_url.parse('postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0')
 # }
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0', conn_max_age=600)
-    }
+# DATABASES = {
+#     'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0', conn_max_age=600)
+#     }
 
 
 # import dj_database_url
