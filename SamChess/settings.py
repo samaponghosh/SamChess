@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,15 +23,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'ChessApp',
-    'channels',
-    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ChessApp',
+    'channels',
+    'daphne',
 ]
 
 MIDDLEWARE = [
@@ -64,22 +65,22 @@ TEMPLATES = [
 ]
 
 # #redis 
-# REDIS_URL = os.environ.get("REDIS_URL", "locaalhost")
+
+# REDIS_URL = os.environ.get('REDIS_URL', 'localhost')
 # CHANNEL_LAYERS = {
 #     "default": {
 #         "BACKEND": "channels_redis.core.RedisChannelLayer",
 #         "CONFIG": {
-#             # "hosts": [os.environ.get('REDIS_URL', 'redis://red-cn1j10ed3nmc73bnnqmg:6379')],
 #             "hosts": [(REDIS_URL, 6379)],
 #         },
 #     },
 # }
-REDIS_URL = os.environ.get('REDIS_URL', 'localhost')
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(REDIS_URL, 6379)],
+            "hosts": [('redis://red-cn2t517109ks73ekucpg:6379')],
         },
     },
 }
@@ -107,18 +108,21 @@ ASGI_APPLICATION = 'SamChess.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
-# import dj_database_url
 
 # DATABASES = {
-#     "default": dj_database_url.parse("postgres://databases_76f0_user:XXv2Jb1a1tKtUr1P2k1t3A6pmv3U1rqf@dpg-cn32rricn0vc738knrq0-a/databases_76f0")
+#     'default': dj_database_url.parse('postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0')
 # }
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a/database_b2u0', conn_max_age=600)
+    }
+
 
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=600)
@@ -163,8 +167,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS= os.path.join(BASE_DIR, 'static'),
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATICFILES_DIRS= os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 # Default primary key field type

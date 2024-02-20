@@ -1,0 +1,3 @@
+python manage.py makemigrations app_name
+python manage.py sqlmigrate app_name migration_name
+python manage.py migrate
