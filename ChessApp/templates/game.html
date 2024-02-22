@@ -245,8 +245,8 @@
       board.position(game.fen());
       updateStatus();
       if(data.opp_online!=true) {
-        $modalTitle.html("Please Wait...")
-        $modalBody.html("Please wait for your opponent to connect to this game")
+        $modalTitle.html("Opponent hsn't joined yet, please wait")
+        $modalBody.html("Please wait for your opponent to join  ")
         $('#gameModal').modal({
           keyboard: false,
           backdrop: 'static'

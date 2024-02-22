@@ -10,12 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "1a8b5d8922cd4ca4bf3ac4c5887bd3fe"
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = "1a8b5d8922cd4ca4bf3ac4c5887bd3fe"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG","True")
-DEBUG = True
+DEBUG = os.environ.get("DEBUG","True")
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -75,12 +75,12 @@ TEMPLATES = [
 #         },
 #     },
 # }
-
+REDIS_URL = os.environ.get("Redis_URL")
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('redis://red-cn2t517109ks73ekucpg:6379')],
+            "hosts": [(REDIS_URL)],
         },
     },
 }
@@ -116,18 +116,15 @@ ASGI_APPLICATION = 'SamChess.asgi.application'
 # }
 
 
+
 # DATABASES = {
-#     'default': dj_database_url.parse('postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0')
-# }
+#     'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a/database_b2u0', conn_max_age=600)
+#     }
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a/database_b2u0', conn_max_age=600)
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     }
-
-
-# import dj_database_url
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# # DATABASES['default'] = dj_database_url.config(default='postgres://')
-# DATABASES['default'].update(db_from_env)
 
 
 # Password validation

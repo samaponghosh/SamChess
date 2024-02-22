@@ -37,9 +37,9 @@ def game(request, game_id):
             game.opponent = request.user
             game.status = 2
             game.save()
-            messages.add_message(request, messages.SUCCESS, "You have joined this game successfully")
+            messages.add_message(request, messages.SUCCESS, "You have joined this room successfully")
         elif game.opponent != request.user:
-            messages.add_message(request, messages.ERROR, "This room already has enough participants. Try joining another")
+            messages.add_message(request, messages.ERROR, "This room already has two participants. Try joining another")
             return HttpResponseRedirect(reverse("ongoing"))
     return render(request, "game.html", {"game_id":game_id})
 
@@ -92,7 +92,7 @@ class register(View):
         try:
             User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
         except:
-            messages.add_message(request, messages.ERROR, "This username already exists!")
+            messages.add_message(request, messages.ERROR, "This username already exists. Enter a uniqe username")
             return HttpResponseRedirect(reverse("signup"))
         messages.add_message(request, messages.SUCCESS, "New user account successfully registered! Login now...")
         return HttpResponseRedirect("/")
