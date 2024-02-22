@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
 """
 
 import os
+import django
 
 from django.core.asgi import get_asgi_application
 from django.urls import path
@@ -19,9 +20,11 @@ from channels.auth import AuthMiddlewareStack
 from ChessApp.consumers import GameConsumer, SingleConsumer
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SamChess.settings')
+django.setup()
 
 # application = get_asgi_application()
 application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
     "websocket": AuthMiddlewareStack(
         URLRouter([
             path(r'game/<int:game_id>', GameConsumer.as_asgi()),
