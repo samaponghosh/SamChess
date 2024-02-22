@@ -208,8 +208,8 @@
   updateStatus()
 
   connekson.onclose = function () {
-    $modalTitle.html("Connection closed")
-    $modalBody.html("Connection closed unexpectedly please wait while we try to reconnect...")
+    $modalTitle.html("Error")
+    $modalBody.html("Connekso0n closed")
     $('#gameModal').modal({
      keyboard: false,
      backdrop: 'static'
@@ -258,8 +258,8 @@
       $('#gameModal').data('bs.modal',null);
     }
     else if(data.command=="opponent-offline"){
-      $modalTitle.html("Please Wait...")
-      $modalBody.html("Your opponent suddenly disconnected. Please wait for your opponent to connect to this game")
+      $modalTitle.html("Please Wait")
+      $modalBody.html("Your opponent got disconnected. Please wait for your opponent to connect")
       $('#gameModal').modal({
         keyboard: false,
         backdrop: 'static'
@@ -276,7 +276,7 @@
     }
     else if(data.command=="opponent-resigned") {
       $modalTitle.html("Game over")
-      $modalBody.html("Your opponent has resigned from the game. You win!")
+      $modalBody.html("Your opponent has resigned from the game. You win the gam")
       $('#gameModal').modal({
         keyboard: false,
         backdrop: 'static'
@@ -302,7 +302,7 @@
     $('#resignModal').modal('hide');
     $('#resignModal').data('bs.modal',null);
     $modalTitle.html("Game over")
-    $modalBody.html("You have resigned from the game. You lose!")
+    $modalBody.html("You have resigned from the game. You lost the game")
     $('#gameModal').modal({
       keyboard: false,
       backdrop: 'static'
