@@ -80,7 +80,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [('rediss://red-cn2t517109ks73ekucpg:MS11VW8yWc437JLrFZrk5D2dGEYLsmve@singapore-redis.render.com:6379')],
+            "hosts": [('redis://red-cn2t517109ks73ekucpg:6379')],
         },
     },
 }
@@ -120,7 +120,7 @@ ASGI_APPLICATION = 'SamChess.asgi.application'
 #     'default': dj_database_url.parse('postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0')
 # }
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a.singapore-postgres.render.com/database_b2u0', conn_max_age=600)
+    'default': dj_database_url.config(default='postgres://database_b2u0_user:GcBeMFTAYwS7VlLvalguDPEJpKgbdgR1@dpg-cn3mi0tjm4es73bls510-a/database_b2u0', conn_max_age=600)
     }
 
 
