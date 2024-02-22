@@ -1,11 +1,4 @@
-"""
-ASGI config for SamChess project.
 
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.2/howto/deployment/asgi/
-"""
 
 import os
 import django
@@ -24,7 +17,7 @@ django.setup()
 
 # application = get_asgi_application()
 application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
+    "http": AsgiHandler(),
     "websocket": AuthMiddlewareStack(
         URLRouter([
             path(r'game/<int:game_id>', GameConsumer.as_asgi()),
